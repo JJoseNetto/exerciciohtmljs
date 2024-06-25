@@ -1,0 +1,11 @@
+.span-required{
+    display: none;
+    border-color: red;
+    color: red;
+    font-size: 12px;
+}
+
+.sucess{
+    color: green;
+    font-size: 25px;
+}

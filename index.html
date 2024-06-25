@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exec Ebac</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h2>Formulário Númerico</h2>
+            <form id="form">
+                <div>
+                    <label for="number-campo">Numero A:</label>
+                    <input type="number" id="number-campo" placeholder="Digite um numero" class="form-control required" required>
+                    <span class="span-required">Numero A deve ser menor que o numero B</span>
+                </div>
+                <div>
+                    <label for="number-campoo">Numero B:</label>
+                    <input type="number" id="number-campoo" placeholder="Digite um numero" class="form-control required" required>
+                    <span class="span-required">Numero B deve ser maior que o numero A</span>
+                    <p class="sucess">Formualrio enviado com sucesso!</p>
+                </div>
+                <button type="submit" class="btn btn-success" style="margin-top: 5px;">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+    <script>
+        const form   = document.getElementById('form');
+        const campos = document.querySelectorAll('.required');
+        const numeroA = document.getElementById('number-campo');
+        const numeroB = document.getElementById('number-campoo');
+        const spans  = document.querySelectorAll('.span-required');
+        const sucess = document.querySelectorAll('.sucess');
+
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            validateNumber();
+        })
+
+        function setError(index){
+            campos[index].style.border = '2px solid #e63636';
+            campos[index].style.boxShadow = '0 0 5px #e63636';
+            spans[index].style.display = 'block';
+        }
+
+        function removeError(index){
+            campos[index].style.border = '';
+            campos[index].style.boxShadow = '';
+            spans[index].style.display = 'none';
+            sucess[index].style.display = 'block';
+            setTimeout(() => {sucess[index].style.display = 'none';}, 2000);
+            numeroA.value = '';
+            numeroB.value = '';
+        }
+
+        function validateNumber() {
+            const valueA = parseFloat(numeroA.value);
+            const valueB = parseFloat(numeroB.value);
+
+            if (valueA >= valueB) {
+                setError(0);
+                setError(1);
+            } else {
+                removeError(0);
+                removeError(1);
+            }
+        }
+    </script>
+</body>
+</html>
